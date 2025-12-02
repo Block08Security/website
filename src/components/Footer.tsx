@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Footer = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -182,9 +184,9 @@ const Footer = () => {
               <span className="text-gray-400 font-semibold">Route07 Information Technology</span>. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-              <a href="#" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
+              <Link to="/privacy-policy" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
               <button
                 onClick={scrollToTop}
                 className="text-sm text-gray-500 hover:text-primary-500 transition-all flex items-center group"
