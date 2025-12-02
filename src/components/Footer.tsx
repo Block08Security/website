@@ -11,80 +11,70 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-dark-bg border-t border-dark-border">
-      <div className="section-container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="relative border-t border-white/5">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 pointer-events-none" />
+
+      <div className="section-container relative z-10 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <svg
-                className="w-8 h-8 text-primary-600"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20 4L4 12V20C4 28.837 10.268 36.747 20 38.5C29.732 36.747 36 28.837 36 20V12L20 4Z"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                />
-                <path
-                  d="M15 20L18.5 23.5L25 17"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <div>
-                <h3 className="text-lg font-bold text-white">Block08</h3>
-                <p className="text-xs text-gray-400">A Route07 Division</p>
-              </div>
+            <div className="flex items-center mb-6 group cursor-pointer" onClick={scrollToTop}>
+              <img
+                src="/Block08-logo.svg"
+                alt="Block08 Security Audits"
+                className="h-11 w-auto group-hover:scale-105 transition-transform"
+              />
             </div>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-gray-400 mb-6 leading-relaxed">
               Enterprise-grade smart contract security audits and blockchain security services.
             </p>
-            <p className="text-sm text-gray-500">
+            <div className="flex items-center text-gray-500 text-sm">
+              <svg className="w-4 h-4 mr-2 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
               Muscat, Oman
-            </p>
+            </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
+            <h4 className="text-white font-bold text-lg mb-6">Services</h4>
+            <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('services')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Smart Contract Audits
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('services')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Formal Verification
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('services')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Security Monitoring
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('services')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Incident Response
                 </button>
               </li>
@@ -93,37 +83,41 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
+            <h4 className="text-white font-bold text-lg mb-6">Company</h4>
+            <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollToSection('about')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   About
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('process')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Our Process
                 </button>
               </li>
               <li>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Sample Reports
                 </a>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
                 >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Contact
                 </button>
               </li>
@@ -132,11 +126,11 @@ const Footer = () => {
 
           {/* Connect */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Connect</h4>
-            <div className="flex space-x-4 mb-6">
+            <h4 className="text-white font-bold text-lg mb-6">Connect</h4>
+            <div className="flex space-x-3 mb-6">
               <a
                 href="#"
-                className="w-10 h-10 bg-dark-card border border-dark-border rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-600 transition-all"
+                className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-500 hover:bg-primary-500/10 transition-all hover:scale-110"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -145,7 +139,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-dark-card border border-dark-border rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-600 transition-all"
+                className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-500 hover:bg-primary-500/10 transition-all hover:scale-110"
                 aria-label="Twitter"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -154,7 +148,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-dark-card border border-dark-border rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-600 transition-all"
+                className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-500 hover:bg-primary-500/10 transition-all hover:scale-110"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -163,7 +157,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-dark-card border border-dark-border rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-600 transition-all"
+                className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:border-primary-500 hover:bg-primary-500/10 transition-all hover:scale-110"
                 aria-label="Telegram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -171,30 +165,32 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-            <p className="text-sm text-gray-400">
-              <a href="mailto:security@block08.com" className="hover:text-white transition-colors">
-                security@block08.com
-              </a>
-            </p>
+            <a href="mailto:security@block08.com" className="text-gray-400 hover:text-primary-500 text-sm transition-colors flex items-center group">
+              <svg className="w-4 h-4 mr-2 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              security@block08.com
+            </a>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-dark-border">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-gray-500 mb-4 md:mb-0">
-              © 2025 Block08 Security Audits. A division of Route07 Information Technology. All rights reserved.
+        <div className="pt-8 border-t border-white/5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-500">
+              © 2025 Block08 Security Audits. A division of{' '}
+              <span className="text-gray-400 font-semibold">Route07 Information Technology</span>. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-              <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
+              <a href="#" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
                 Privacy Policy
               </a>
               <button
                 onClick={scrollToTop}
-                className="text-sm text-gray-500 hover:text-white transition-colors flex items-center"
+                className="text-sm text-gray-500 hover:text-primary-500 transition-all flex items-center group"
               >
                 Back to top
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 ml-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
               </button>
@@ -207,4 +203,3 @@ const Footer = () => {
 }
 
 export default Footer
-

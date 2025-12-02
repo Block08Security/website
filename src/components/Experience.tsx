@@ -37,28 +37,30 @@ const Experience = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="text-center animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
+          {stats.map((stat, index) => {
+            const delays = ['', 'animate-delay-100', 'animate-delay-200', 'animate-delay-300']
+            return (
+              <div
+                key={index}
+                className={`text-center animate-fade-in ${delays[index]}`}
+              >
               <div className="text-4xl md:text-5xl font-bold text-primary-600 mb-2">
                 {stat.value}
               </div>
               <div className="text-gray-400">{stat.label}</div>
             </div>
-          ))}
+          )})}
         </div>
 
         {/* Testimonials */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="card animate-slide-up"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
+          {testimonials.map((testimonial, index) => {
+            const delays = ['', 'animate-delay-150', 'animate-delay-300ms']
+            return (
+              <div
+                key={index}
+                className={`card animate-slide-up ${delays[index]}`}
+              >
               <div className="mb-4">
                 <svg
                   className="w-8 h-8 text-primary-600/30"
@@ -76,7 +78,7 @@ const Experience = () => {
                 <div className="text-sm text-gray-400">{testimonial.role}</div>
               </div>
             </div>
-          ))}
+          )})}
         </div>
 
         {/* Trust Badges */}

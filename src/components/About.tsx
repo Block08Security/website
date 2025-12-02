@@ -30,69 +30,85 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="section-padding bg-dark-bg">
-      <div className="section-container">
+    <section id="about" className="section-padding relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary-600/10 rounded-full blur-3xl" />
+
+      <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <span className="text-primary-500 font-bold text-base md:text-lg tracking-widest uppercase">Who We Are</span>
+          </div>
           <h2 className="section-title">About Block08</h2>
           <p className="section-subtitle">
             Specialized security division of Route07 Information Technology
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Company Background */}
-          <div className="card mb-8 animate-fade-in">
-            <div className="prose prose-invert max-w-none">
-              <p className="text-lg text-gray-300 leading-relaxed mb-4">
-                <span className="font-semibold text-white">Block08 Security Audits</span> is a specialized division of{' '}
-                <span className="text-primary-600 font-semibold">Route07 Information Technology</span>, 
+          <div className="card mb-12 animate-fade-in">
+            <div className="space-y-6">
+              <p className="text-xl text-gray-300 leading-relaxed">
+                <span className="font-bold text-white">Block08 Security Audits</span> is a specialized division of{' '}
+                <span className="text-primary-500 font-bold">Route07 Information Technology</span>, 
                 focused exclusively on blockchain security and smart contract auditing services.
               </p>
-              <p className="text-gray-400 leading-relaxed mb-4">
+              <p className="text-lg text-gray-400 leading-relaxed">
                 Based in <span className="text-white font-semibold">Muscat, Oman</span>, we serve Web3 projects 
                 worldwide, providing enterprise-grade security solutions for the decentralized ecosystem. Our mission 
                 is to secure the Web3 future through rigorous audits, formal verification, and continuous security monitoring.
               </p>
               <p className="text-gray-400 leading-relaxed">
                 We combine cutting-edge security research with practical smart contract expertise to identify and 
-                mitigate vulnerabilities before they can be exploited. Our team has audited over 100 smart contracts, 
-                securing billions of dollars in digital assets across DeFi protocols, NFT platforms, DAOs, and 
-                blockchain infrastructure.
+                mitigate vulnerabilities before they can be exploited. Building secure, reliable blockchain infrastructure 
+                for the future of decentralized applications.
               </p>
             </div>
           </div>
 
           {/* Expertise Areas */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">Our Expertise</h3>
+            <h3 className="text-3xl font-bold text-white mb-8 text-center">Our Expertise</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {team.map((member, index) => (
-                <div
-                  key={index}
-                  className="card animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary-600/10 rounded-lg text-primary-600 mb-4">
-                    {member.icon}
+              {team.map((member, index) => {
+                const delays = ['', 'animate-delay-100', 'animate-delay-200']
+                return (
+                  <div
+                    key={index}
+                    className={`card group animate-slide-up ${delays[index]}`}
+                  >
+                  <div className="relative inline-flex items-center justify-center w-14 h-14 mb-6">
+                    <div className="absolute inset-0 bg-primary-600/20 blur-xl rounded-full" />
+                    <div className="relative bg-gradient-to-br from-primary-600/20 to-primary-700/20 rounded-2xl p-4 text-primary-500 group-hover:scale-110 transition-transform">
+                      {member.icon}
+                    </div>
                   </div>
-                  <h4 className="text-lg font-bold text-white mb-2">{member.role}</h4>
-                  <p className="text-sm text-gray-400">{member.description}</p>
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">{member.role}</h4>
+                  <p className="text-gray-400 leading-relaxed">{member.description}</p>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
 
           {/* Mission Statement */}
-          <div className="card bg-gradient-to-br from-primary-600/10 to-primary-600/5 border-primary-600/20 animate-fade-in">
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600/20 rounded-full text-primary-600 mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+          <div className="card relative overflow-hidden animate-fade-in group">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-primary-700/5" />
+            <div className="relative text-center py-8">
+              <div className="inline-flex items-center justify-center mb-6">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-primary-600/30 blur-2xl rounded-full" />
+                  <div className="relative w-20 h-20 bg-gradient-to-br from-primary-600/20 to-primary-700/20 rounded-3xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <svg className="w-10 h-10 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Our Mission</h3>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              <h3 className="text-3xl font-bold text-white mb-6">Our Mission</h3>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Securing the Web3 ecosystem through rigorous security audits, formal verification, 
                 and continuous monitoring—empowering developers to build with confidence.
               </p>
@@ -100,14 +116,17 @@ const About = () => {
           </div>
 
           {/* Route07 Connection */}
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center px-6 py-3 bg-dark-card border border-dark-border rounded-full">
-              <svg className="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <span className="text-gray-300">
+          <div className="mt-16 text-center animate-fade-in">
+            <div className="inline-flex items-center px-8 py-4 glass-card hover:border-primary-500/50 transition-all group">
+              <div className="relative mr-4">
+                <div className="absolute inset-0 bg-primary-600/20 blur-lg rounded-full" />
+                <svg className="relative w-6 h-6 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <span className="text-gray-300 font-medium">
                 Powered by{' '}
-                <span className="font-semibold text-white">Route07 Information Technology</span>
+                <span className="font-bold text-white">Route07 Information Technology</span>
               </span>
             </div>
           </div>
@@ -118,4 +137,3 @@ const About = () => {
 }
 
 export default About
-

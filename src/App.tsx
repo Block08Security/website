@@ -3,7 +3,6 @@ import Hero from './components/Hero'
 import Highlights from './components/Highlights'
 import Services from './components/Services'
 import Process from './components/Process'
-import Experience from './components/Experience'
 import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -17,7 +16,6 @@ function App() {
         <Highlights />
         <Services />
         <Process />
-        <Experience />
         <About />
         <Contact />
       </main>

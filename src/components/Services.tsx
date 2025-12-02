@@ -101,10 +101,18 @@ const Services = () => {
   }
 
   return (
-    <section id="services" className="section-padding bg-dark-card">
-      <div className="section-container">
+    <section id="services" className="section-padding relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-700/10 rounded-full blur-3xl" />
+
+      <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <span className="text-primary-500 font-bold text-base md:text-lg tracking-widest uppercase">What We Offer</span>
+          </div>
           <h2 className="section-title">Our Security Services</h2>
           <p className="section-subtitle">
             Comprehensive security solutions for the entire smart contract lifecycle
@@ -113,31 +121,35 @@ const Services = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="card group animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Icon */}
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-primary-600/10 rounded-lg text-primary-600 mb-4 group-hover:bg-primary-600/20 transition-colors">
-                {service.icon}
+          {services.map((service, index) => {
+            const delays = ['', 'animate-delay-100', 'animate-delay-200', 'animate-delay-300', 'animate-delay-400', 'animate-delay-500']
+            return (
+              <div
+                key={index}
+                className={`card group animate-slide-up ${delays[index]}`}
+              >
+              {/* Icon with Glow */}
+              <div className="relative inline-flex items-center justify-center w-16 h-16 mb-6">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl opacity-10 group-hover:opacity-20 transition-opacity blur-xl" />
+                <div className="relative bg-gradient-to-br from-primary-600/20 to-primary-700/20 rounded-2xl p-4 text-primary-500 group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-400 mb-4">{service.description}</p>
+              <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
 
               {/* Features */}
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-3 mb-8">
                 {service.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="flex items-start text-sm text-gray-300">
                     <svg
-                      className="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5"
+                      className="w-5 h-5 text-primary-500 mr-3 flex-shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -149,7 +161,7 @@ const Services = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    {feature}
+                    <span className="leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -157,11 +169,11 @@ const Services = () => {
               {/* CTA */}
               <button
                 onClick={scrollToContact}
-                className="text-primary-600 hover:text-primary-500 font-semibold text-sm flex items-center group-hover:translate-x-1 transition-transform"
+                className="text-primary-500 hover:text-primary-400 font-semibold text-sm flex items-center group/btn"
               >
                 Learn more
                 <svg
-                  className="w-4 h-4 ml-1"
+                  className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -170,12 +182,12 @@ const Services = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 5l7 7-7 7"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
               </button>
             </div>
-          ))}
+          )})}
         </div>
       </div>
     </section>
@@ -183,4 +195,3 @@ const Services = () => {
 }
 
 export default Services
-
