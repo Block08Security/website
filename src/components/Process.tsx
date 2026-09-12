@@ -3,7 +3,7 @@ const Process = () => {
     {
       number: '01',
       title: 'Initial Consultation',
-      description: 'Requirements gathering and scope definition for your smart contract audit',
+      description: 'Requirements gathering and scope definition for your security engagement',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -13,7 +13,7 @@ const Process = () => {
     {
       number: '02',
       title: 'Code Review',
-      description: 'Manual review by security experts with deep blockchain expertise',
+      description: 'Manual review by security experts with deep technical expertise',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -75,7 +75,7 @@ const Process = () => {
           <div className="inline-block mb-6">
             <span className="text-primary-500 font-bold text-base md:text-lg tracking-widest uppercase">How It Works</span>
           </div>
-          <h2 className="section-title">Our Audit Process</h2>
+          <h2 className="section-title">Our Security Process</h2>
           <p className="section-subtitle">
             A systematic approach to identifying and mitigating security vulnerabilities
           </p>
@@ -134,7 +134,7 @@ const Process = () => {
               </svg>
             </div>
             <span className="text-gray-300">
-              <span className="font-bold text-white">Typical audit duration:</span> 2-4 weeks
+              <span className="font-bold text-white">Typical engagement duration:</span> 2-4 weeks
             </span>
           </div>
         </div>

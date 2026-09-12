@@ -2,7 +2,7 @@ const About = () => {
   const team = [
     {
       role: 'Security Researchers',
-      description: 'Expert researchers with deep knowledge of blockchain security and smart contract vulnerabilities',
+      description: 'Expert researchers with deep knowledge of application, database, and blockchain vulnerabilities',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -10,8 +10,8 @@ const About = () => {
       ),
     },
     {
-      role: 'Solidity Experts',
-      description: 'Senior developers with extensive experience in secure smart contract development',
+      role: 'Application Security Engineers',
+      description: 'Senior engineers experienced in secure application, API, and smart contract development',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -54,17 +54,17 @@ const About = () => {
               <p className="text-xl text-gray-300 leading-relaxed">
                 <span className="font-bold text-white">Block08 Security Audits</span> is a specialized division of{' '}
                 <span className="text-primary-500 font-bold">Route07 Information Technology</span>, 
-                focused exclusively on blockchain security and smart contract auditing services.
+                focused on blockchain security, smart contract auditing, and application security services.
               </p>
               <p className="text-lg text-gray-400 leading-relaxed">
-                Based in <span className="text-white font-semibold">Muscat, Oman</span>, we serve Web3 projects 
-                worldwide, providing enterprise-grade security solutions for the decentralized ecosystem. Our mission 
-                is to secure the Web3 future through rigorous audits, formal verification, and continuous security monitoring.
+                Based in <span className="text-white font-semibold">Muscat, Oman</span>, we serve organizations 
+                worldwide, providing enterprise-grade security for applications, databases, and blockchain systems. Our mission 
+                is to reduce real-world risk through rigorous assessments, formal verification, and continuous security monitoring.
               </p>
               <p className="text-gray-400 leading-relaxed">
-                We combine cutting-edge security research with practical smart contract expertise to identify and 
-                mitigate vulnerabilities before they can be exploited. Building secure, reliable blockchain infrastructure 
-                for the future of decentralized applications.
+                We combine cutting-edge security research with practical engineering expertise to identify and 
+                mitigate vulnerabilities before they can be exploited. Building secure, reliable systems 
+                for applications, data, and decentralized infrastructure.
               </p>
             </div>
           </div>
@@ -109,8 +109,8 @@ const About = () => {
               </div>
               <h3 className="text-3xl font-bold text-white mb-6">Our Mission</h3>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Securing the Web3 ecosystem through rigorous security audits, formal verification, 
-                and continuous monitoring—empowering developers to build with confidence.
+                Securing applications, protocols, and infrastructure through rigorous assessments, formal verification, 
+                and continuous monitoring—empowering teams to build with confidence.
               </p>
             </div>
           </div>

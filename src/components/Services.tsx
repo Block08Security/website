@@ -33,6 +33,51 @@ const Services = () => {
     {
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+      ),
+      title: 'Web Application Penetration Testing',
+      description: 'Authorized testing of web applications to find exploitable vulnerabilities before attackers do',
+      features: [
+        'OWASP-aligned testing of authentication, session, and access control',
+        'Injection, XSS, CSRF, and business-logic abuse coverage',
+        'Authenticated and unauthenticated attack-surface testing',
+        'Severity-ranked findings with reproduction notes and remediation guidance',
+      ],
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+      title: 'Source Code Security Audit',
+      description: 'Manual and assisted review of application source code to find security defects before release',
+      features: [
+        'Review of auth, authorization, crypto, and input-handling paths',
+        'Detection of injection, insecure defaults, and secret exposure',
+        'Language-aware review for backend, APIs, and application services',
+        'Actionable report with severity ratings and fix recommendations',
+      ],
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+        </svg>
+      ),
+      title: 'Database Security Assessment',
+      description: 'Hardening and security review of database deployments, with deep coverage of PostgreSQL',
+      features: [
+        'Role, privilege, and access-control review',
+        'Authentication, encryption, and connection-hardening checks',
+        'Configuration review against CIS database benchmarks',
+        'Backup, logging, and exposure-risk recommendations',
+      ],
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
@@ -115,14 +160,14 @@ const Services = () => {
           </div>
           <h2 className="section-title">Our Security Services</h2>
           <p className="section-subtitle">
-            Comprehensive security solutions for the entire smart contract lifecycle
+            Comprehensive security solutions for smart contracts, applications, and infrastructure
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
-            const delays = ['', 'animate-delay-100', 'animate-delay-200', 'animate-delay-300', 'animate-delay-400', 'animate-delay-500']
+            const delays = ['', 'animate-delay-100', 'animate-delay-200', 'animate-delay-300', 'animate-delay-400', 'animate-delay-500', 'animate-delay-500', 'animate-delay-500', 'animate-delay-500']
             return (
               <div
                 key={index}

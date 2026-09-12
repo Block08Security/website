@@ -10,7 +10,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const mailtoLink = `mailto:security@block08.com?subject=Security Audit Request - ${formData.projectType}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AProject Type: ${formData.projectType}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`
+    const mailtoLink = `mailto:security@block08.com?subject=Security Assessment Request - ${formData.projectType}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AProject Type: ${formData.projectType}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`
     window.location.href = mailtoLink
   }
 
@@ -38,7 +38,7 @@ const Contact = () => {
           <div className="inline-block mb-6">
             <span className="text-primary-500 font-bold text-base md:text-lg tracking-widest uppercase">Get In Touch</span>
           </div>
-          <h2 className="section-title">Secure Your Smart Contracts Today</h2>
+          <h2 className="section-title">Secure Your Systems Today</h2>
           <p className="section-subtitle">
             Get in touch with our security experts to discuss your project
           </p>
@@ -94,6 +94,9 @@ const Contact = () => {
                       className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
                     >
                       <option value="Audit">Smart Contract Audit</option>
+                      <option value="Web Application Penetration Testing">Web Application Penetration Testing</option>
+                      <option value="Source Code Security Audit">Source Code Security Audit</option>
+                      <option value="Database Security Assessment">Database Security Assessment</option>
                       <option value="Monitoring">Security Monitoring</option>
                       <option value="Incident Response">Incident Response</option>
                       <option value="Training">Security Training</option>
@@ -206,7 +209,7 @@ const Contact = () => {
                   </div>
                   <div className="text-left">
                     <p className="text-white font-bold text-lg">24-hour response time</p>
-                    <p className="text-sm text-gray-400">for audit requests</p>
+                    <p className="text-sm text-gray-400">for assessment requests</p>
                   </div>
                 </div>
               </div>

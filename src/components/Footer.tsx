@@ -29,7 +29,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Enterprise-grade smart contract security audits and blockchain security services.
+              Enterprise-grade security audits, penetration testing, and assessments.
             </p>
             <div className="flex items-center text-gray-500 text-sm">
               <svg className="w-4 h-4 mr-2 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,6 +60,33 @@ const Footer = () => {
                 >
                   <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Formal Verification
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
+                  Web App Penetration Testing
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
+                  Source Code Audit
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection('services')}
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
+                  Database Security Assessment
                 </button>
               </li>
               <li>

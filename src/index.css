@@ -84,5 +84,63 @@
   .animate-delay-450 {
     animation-delay: 0.45s;
   }
+
+  .headline-stage {
+    @apply relative block overflow-hidden;
+  }
+
+  .headline-sizer {
+    @apply invisible block;
+  }
+
+  .headline-phrase {
+    @apply absolute inset-0 block text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 animate-gradient bg-[length:300%];
+    will-change: transform, opacity, filter;
+  }
+
+  .headline-phrase-enter {
+    animation: headlineFlipIn 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .headline-phrase-exit {
+    animation: headlineFlipOut 0.62s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+}
+
+@keyframes headlineFlipIn {
+  0% {
+    opacity: 0;
+    transform: translateY(115%);
+    filter: blur(8px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes headlineFlipOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-115%);
+    filter: blur(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headline-phrase-enter,
+  .headline-phrase-exit {
+    animation: none;
+  }
 }
 

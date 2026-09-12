@@ -71,7 +71,7 @@ const Header = () => {
               onClick={() => scrollToSection('contact')}
               className="btn-primary text-sm"
             >
-              Request Audit
+              Request Assessment
             </button>
           </nav>
 

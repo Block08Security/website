@@ -1,3 +1,5 @@
+import RotatingHeadline from './RotatingHeadline'
+
 const Hero = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -34,17 +36,15 @@ const Hero = () => {
 
           {/* Headline */}
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-            <span className="block text-white mb-2">Smart Contract</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 animate-gradient">
-              Security Audits
-            </span>
+            <span className="block text-white mb-2">Security for</span>
+            <RotatingHeadline />
           </h1>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
-            Comprehensive security audits and formal verification for blockchain protocols.
+            Audits, penetration testing, and assessments for applications, code, and infrastructure.
             <br className="hidden md:block" />
-            <span className="text-gray-400">Protecting your Web3 infrastructure with precision and expertise.</span>
+            <span className="text-gray-400">Protecting your systems with precision and expertise.</span>
           </p>
 
           {/* CTA Buttons */}
@@ -53,7 +53,7 @@ const Hero = () => {
               onClick={() => scrollToSection('contact')}
               className="btn-primary text-lg group"
             >
-              Request Security Audit
+              Request Assessment
               <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>

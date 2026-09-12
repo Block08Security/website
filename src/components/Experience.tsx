@@ -3,7 +3,7 @@ const Experience = () => {
     { value: '100+', label: 'Audits Completed' },
     { value: '500+', label: 'Vulnerabilities Found' },
     { value: '$2B+', label: 'Assets Secured' },
-    { value: '50+', label: 'Web3 Projects' },
+    { value: '50+', label: 'Projects Delivered' },
   ]
 
   const testimonials = [
@@ -29,9 +29,9 @@ const Experience = () => {
       <div className="section-container">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="section-title">Trusted by Leading Web3 Projects</h2>
+          <h2 className="section-title">Trusted by Leading Teams</h2>
           <p className="section-subtitle">
-            Securing the decentralized future with proven expertise
+            Securing applications, protocols, and infrastructure with proven expertise
           </p>
         </div>
 
