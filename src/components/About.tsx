@@ -110,7 +110,7 @@ const About = () => {
               <h3 className="text-3xl font-bold text-white mb-6">Our Mission</h3>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Securing applications, protocols, and infrastructure through rigorous assessments, formal verification, 
-                and continuous monitoring—empowering teams to build with confidence.
+                and continuous monitoring, empowering teams to build with confidence.
               </p>
             </div>
           </div>

@@ -35,7 +35,7 @@ const Hero = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+          <h1 className="text-[2.15rem] leading-tight sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
             <span className="block text-white mb-2">Security for</span>
             <RotatingHeadline />
           </h1>
@@ -79,7 +79,7 @@ const Hero = () => {
                 <div className="text-center group">
                   <div className="relative inline-block mb-4">
                     <div className="absolute inset-0 bg-primary-600/20 blur-xl rounded-full" />
-                    <div className="relative text-5xl md:text-6xl font-bold bg-gradient-to-br from-primary-500 to-primary-700 bg-clip-text text-transparent">
+                    <div className="relative text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-br from-primary-500 to-primary-700 bg-clip-text text-transparent">
                       10+
                     </div>
                   </div>
@@ -88,7 +88,7 @@ const Hero = () => {
                 <div className="text-center group">
                   <div className="relative inline-block mb-4">
                     <div className="absolute inset-0 bg-primary-600/20 blur-xl rounded-full" />
-                    <div className="relative text-5xl md:text-6xl font-bold bg-gradient-to-br from-primary-500 to-primary-700 bg-clip-text text-transparent">
+                    <div className="relative text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-br from-primary-500 to-primary-700 bg-clip-text text-transparent">
                       24/7
                     </div>
                   </div>
@@ -97,7 +97,7 @@ const Hero = () => {
                 <div className="text-center group">
                   <div className="relative inline-block mb-4">
                     <div className="absolute inset-0 bg-emerald-600/20 blur-xl rounded-full" />
-                    <div className="relative text-5xl md:text-6xl font-bold bg-gradient-to-br from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+                    <div className="relative text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-br from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
                       0
                     </div>
                   </div>

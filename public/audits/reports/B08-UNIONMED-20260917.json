@@ -76,7 +76,7 @@
     },
     {
       "title": "No hard secrets detected in client bundles",
-      "detail": "Scanned 8 script(s) for sk_live/AKIA/AIza/PEM/github token patterns — none found."
+      "detail": "Scanned 8 script(s) for sk_live/AKIA/AIza/PEM/github token patterns, none found."
     },
     {
       "title": "Cloudflare WAF/CDN fronts the origin",
@@ -112,5 +112,5 @@
     "Disable legacy TLS 1.0/1.1 if offered and require TLS 1.2+.",
     "Re-run this suite after remediation for a clean baseline suitable for stakeholder distribution."
   ],
-  "assurance": "Block08 Security Audits conducted this automated external assessment of www.unionmedia-lb.com on the date recorded herein, following a disciplined, evidence-driven methodology. Every finding was produced by the Block08 toolkit from live tool output (curl, openssl, dig) and a deterministic rule engine — not a language model. Testing was strictly non-mutating. Security testing cannot prove the absence of all vulnerabilities; findings are limited to the observable unauthenticated surface under the stated rules of engagement."
+  "assurance": "Block08 Security Audits conducted this automated external assessment of www.unionmedia-lb.com on the date recorded herein, following a disciplined, evidence-driven methodology. Every finding was produced by the Block08 toolkit from live tool output (curl, openssl, dig) and a deterministic rule engine, not a language model. Testing was strictly non-mutating. Security testing cannot prove the absence of all vulnerabilities; findings are limited to the observable unauthenticated surface under the stated rules of engagement."
 }

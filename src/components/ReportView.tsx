@@ -140,7 +140,7 @@ const ReportView = ({ report, versions = [], showActions = true }: ReportViewPro
           Report reference {report.reference}
           {report.version > 1 ? ` · Version ${report.version}` : ''}
           {report.previousReference ? ` · supersedes ${report.previousReference}` : ''}
-          {' · '}CLASSIFICATION: {report.classification} — recorded in the Block08 public registry
+          {' · '}CLASSIFICATION: {report.classification}, recorded in the Block08 public registry
         </p>
       </section>
 
@@ -313,7 +313,7 @@ const ReportView = ({ report, versions = [], showActions = true }: ReportViewPro
         <h2>{letterTitle('06', 'RETEST POLICY')}</h2>
         <h3>When a new version is issued</h3>
         <p className="report-body">
-          A subsequent free assessment is published only when the live security surface has changed — response headers,
+          A subsequent free assessment is published only when the live security surface has changed, response headers,
           TLS protocol flags, DNS CAA, CORS, security.txt, or first-party script paths. Cosmetic HTML or CDN nonce
           rotation does not count. Unchanged sites keep this report as the current version; remediations produce v
           {(report.version ?? 1) + 1} and every prior version remains in the public registry.

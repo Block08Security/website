@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import AssessGuide from '../components/AssessGuide'
 import { versionsForHost } from '../pentest/groupAudits'
 import { fetchAuditIndex } from '../pentest/loadAudits'
 import { canonicalizeHost } from '../pentest/urlGuard'
@@ -42,7 +43,7 @@ const PendingAssessPage = () => {
       }
       if (Date.now() - started > 10 * 60 * 1000 && !cancelled) {
         setMessage(
-          `No new version was issued. ${host} matches the current report — remediate the live security surface, then retest.`,
+          `No new version was issued. ${host} matches the current report, remediate the live security surface, then retest.`,
         )
       } else if (!cancelled) {
         setMessage(`Still running against ${host}. A new version is published only if the site changed.`)
@@ -64,24 +65,27 @@ const PendingAssessPage = () => {
     <div className="min-h-screen bg-dark-bg">
       <Header />
       <main className="pt-32 pb-20">
-        <div className="section-container max-w-2xl mx-auto text-center">
-          <p className="text-primary-500 font-bold tracking-widest uppercase mb-4">Assessment queued</p>
-          <h1 className="section-title">Toolkit in progress</h1>
-          <p className="section-subtitle">{message}</p>
-          <p className="text-gray-500 mb-8">
-            Confirm the GitHub issue if a new tab opened. curl, openssl and dig are gathering evidence; an unchanged
-            website keeps its current version.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/audits" className="btn-secondary">
-              Open public registry
-            </Link>
-            {currentId && (
-              <Link to={`/audits/${currentId}`} className="btn-primary">
-                Current report
+        <div className="section-container">
+          <div className="max-w-2xl mx-auto text-center mb-12">
+            <p className="text-primary-500 font-bold tracking-widest uppercase mb-4">Assessment queued</p>
+            <h1 className="section-title">Finish on GitHub, then wait here</h1>
+            <p className="section-subtitle">{message}</p>
+            <p className="text-gray-500 mb-8">
+              If the new tab asked you to sign in, use your own GitHub account. On the issue page, leave the title as it
+              is and click Submit new issue. This page refreshes on its own.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/audits" className="btn-secondary">
+                Open public registry
               </Link>
-            )}
+              {currentId && (
+                <Link to={`/audits/${currentId}`} className="btn-primary">
+                  Current report
+                </Link>
+              )}
+            </div>
           </div>
+          <AssessGuide variant="pending" />
         </div>
       </main>
       <Footer />

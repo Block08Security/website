@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import AssessGuide from '../components/AssessGuide'
 import { GITHUB_REPO, IP_COOLDOWN_MS, LOCAL_IP_SCAN_KEY } from '../pentest/constants'
 import { groupAuditsByHost } from '../pentest/groupAudits'
 import { fetchAuditIndex } from '../pentest/loadAudits'
@@ -93,7 +94,7 @@ const AssessPage = () => {
       }
       sessionStorage.setItem('b08.pendingHost', host)
       sessionStorage.setItem('b08.pendingBaseline', String(existing?.version ?? 0))
-      setStatus('Opening the assessment queue. Keep this tab open — the public report will appear after the toolkit finishes.')
+      setStatus('GitHub is opening. Sign in with your account, then click Submit new issue. Keep this tab open.')
       window.open(issueUrl, '_blank', 'noopener,noreferrer')
       navigate(`/assess/pending?host=${encodeURIComponent(host)}`)
     } catch (caught) {
@@ -110,12 +111,14 @@ const AssessPage = () => {
             <p className="text-primary-500 font-bold tracking-widest uppercase mb-4">Free external assessment</p>
             <h1 className="section-title">Website penetration test</h1>
             <p className="section-subtitle">
-              Non-mutating black-box checks with curl, openssl and dig. One new website per visitor per day. A retest
-              is published only after the live security surface changes.
+              Non-mutating black-box checks with curl, openssl and dig. You confirm the scan by signing in to GitHub
+              with your own account and submitting a pre-filled issue on {GITHUB_REPO}.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="card max-w-3xl mx-auto mb-16">
+          <AssessGuide />
+
+          <form id="start-assessment" onSubmit={handleSubmit} className="card max-w-3xl mx-auto mb-16">
             <label htmlFor="target" className="block text-sm font-semibold text-gray-300 mb-3">
               Website URL
             </label>
@@ -124,7 +127,7 @@ const AssessPage = () => {
               type="text"
               value={url}
               onChange={(event) => setUrl(event.target.value)}
-              className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 mb-6"
+              className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-base text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 mb-6"
               placeholder="https://example.com"
               required
             />
@@ -143,18 +146,17 @@ const AssessPage = () => {
             {error && <p className="text-primary-400 mb-4">{error}</p>}
             {status && <p className="text-gray-400 mb-4">{status}</p>}
             <button type="submit" className="btn-primary w-full">
-              Start free assessment
+              Continue with GitHub
             </button>
             <p className="text-xs text-gray-500 mt-4">
-              The Block08 toolkit runs in GitHub Actions against the live target. If headers, TLS, DNS, CORS or
-              first-party scripts are unchanged, no new version is issued. A GitHub account is required so the queue
-              cannot be flooded.
+              Opens {GITHUB_REPO} in a new tab. Sign in as yourself, then click Submit new issue. Come back here, the
+              public report appears when the toolkit finishes. Unchanged sites do not get a new version.
             </p>
           </form>
 
           <div className="max-w-5xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Recently recorded assessments</h2>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-white">Recently recorded assessments</h2>
               <Link to="/audits" className="text-primary-500 text-sm">
                 View registry
               </Link>

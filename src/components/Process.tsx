@@ -99,7 +99,7 @@ const Process = () => {
                       {step.icon}
                     </div>
                   </div>
-                  <div className="text-6xl font-bold bg-gradient-to-br from-primary-600/10 to-primary-700/10 bg-clip-text text-transparent font-display">
+                  <div className="text-4xl sm:text-6xl font-bold bg-gradient-to-br from-primary-600/10 to-primary-700/10 bg-clip-text text-transparent font-display">
                     {step.number}
                   </div>
                 </div>

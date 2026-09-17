@@ -34,7 +34,7 @@ const PrivacyPolicy = () => {
           <div className="max-w-4xl mx-auto">
             {/* Title */}
             <div className="mb-12 text-center">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
                 Privacy Policy
               </h1>
               <p className="text-xl text-gray-400">

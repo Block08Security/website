@@ -61,7 +61,7 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
+                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-base text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
                       placeholder="Your name"
                     />
                   </div>
@@ -77,7 +77,7 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
+                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-base text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -91,7 +91,7 @@ const Contact = () => {
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
+                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-base text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all backdrop-blur-sm"
                     >
                       <option value="Audit">Smart Contract Audit</option>
                       <option value="Web Application Penetration Testing">Web Application Penetration Testing</option>
@@ -115,7 +115,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none backdrop-blur-sm"
+                      className="w-full px-5 py-4 bg-dark-bg/50 border border-white/10 rounded-xl text-base text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none backdrop-blur-sm"
                       placeholder="Tell us about your project..."
                     />
                   </div>
