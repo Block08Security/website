@@ -65,6 +65,7 @@ const PrivacyPolicy = () => {
                 </p>
                 <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4 mb-6">
                   <li>Request a security audit or consultation</li>
+                  <li>Request a free website assessment</li>
                   <li>Contact us through our website or email</li>
                   <li>Subscribe to our newsletter or updates</li>
                   <li>Participate in surveys or provide feedback</li>
@@ -77,6 +78,7 @@ const PrivacyPolicy = () => {
                   <li>Name and contact information (email address, phone number)</li>
                   <li>Company name and business information</li>
                   <li>Project details and technical information</li>
+                  <li>Website URLs submitted for public assessments, which are published in the assessment registry</li>
                   <li>Payment and billing information</li>
                   <li>Communication preferences</li>
                 </ul>
@@ -103,6 +105,7 @@ const PrivacyPolicy = () => {
                 <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
                   <li>Providing, maintaining, and improving our security audit services</li>
                   <li>Processing audit requests and delivering reports</li>
+                  <li>Running authorized free website assessments and recording the resulting reports in the public registry</li>
                   <li>Communicating with you about services, updates, and security alerts</li>
                   <li>Responding to inquiries and providing customer support</li>
                   <li>Analyzing usage patterns to enhance user experience</li>

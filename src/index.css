@@ -144,3 +144,107 @@
   }
 }
 
+.report-document {
+  @apply max-w-5xl mx-auto text-left;
+}
+
+.report-toolbar {
+  @apply flex items-center justify-between mb-10;
+}
+
+.report-cover {
+  @apply card mb-10;
+}
+
+.report-kicker {
+  @apply text-primary-500 font-bold tracking-[0.3em] uppercase text-sm mb-4;
+}
+
+.report-confidential {
+  @apply text-xs tracking-[0.35em] uppercase text-gray-500 mb-6;
+}
+
+.report-title {
+  @apply text-4xl md:text-6xl font-bold text-white mb-3;
+}
+
+.report-subtitle {
+  @apply text-2xl text-primary-400 mb-6;
+}
+
+.report-meta-grid {
+  @apply grid sm:grid-cols-2 gap-6 mt-10;
+}
+
+.report-meta-grid dt {
+  @apply text-xs tracking-[0.25em] uppercase text-gray-500 mb-1;
+}
+
+.report-meta-grid dd {
+  @apply text-white font-semibold;
+}
+
+.report-section {
+  @apply card mb-8;
+}
+
+.report-section h2 {
+  @apply text-2xl md:text-3xl font-bold text-white mb-6;
+}
+
+.report-section h3 {
+  @apply text-lg font-semibold text-white mb-3;
+}
+
+.report-stat {
+  @apply bg-white/5 border border-white/10 rounded-2xl p-4;
+}
+
+.report-stat-label {
+  @apply text-xs tracking-widest uppercase text-gray-500 mb-2;
+}
+
+.report-stat-value {
+  @apply text-3xl font-bold text-white;
+}
+
+.report-table {
+  @apply w-full text-left text-sm text-gray-300;
+}
+
+.report-table th {
+  @apply pb-3 text-xs tracking-widest uppercase text-gray-500;
+}
+
+.report-table td {
+  @apply py-3 border-t border-white/10 align-top;
+}
+
+.report-finding {
+  @apply border border-white/10 rounded-2xl p-6 bg-white/5;
+}
+
+.report-control {
+  @apply border border-white/10 rounded-2xl p-4 bg-white/5;
+}
+
+.report-end {
+  @apply text-center text-sm text-gray-500 pt-8;
+}
+
+@media print {
+  body {
+    background: #0a0e1a !important;
+    color: #fff !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .card {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+}
+

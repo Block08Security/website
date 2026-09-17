@@ -1,7 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const scrollToSection = (id: string) => {
+    if (location.pathname !== '/') {
+      navigate(`/#${id}`)
+      return
+    }
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -70,6 +77,24 @@ const Footer = () => {
                   <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
                   Web App Penetration Testing
                 </button>
+              </li>
+              <li>
+                <Link
+                  to="/assess"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
+                  Free Website Test
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/audits"
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
+                  Public Registry
+                </Link>
               </li>
               <li>
                 <button
@@ -213,6 +238,9 @@ const Footer = () => {
             <div className="flex items-center space-x-6">
               <Link to="/privacy-policy" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
                 Privacy Policy
+              </Link>
+              <Link to="/audits" className="text-sm text-gray-500 hover:text-primary-500 transition-colors">
+                Assessment registry
               </Link>
               <button
                 onClick={scrollToTop}
