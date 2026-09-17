@@ -2,9 +2,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { GITHUB_REPO, HOST_COOLDOWN_MS, IP_COOLDOWN_MS, LOCAL_HOST_SCAN_KEY, LOCAL_IP_SCAN_KEY } from '../pentest/constants'
+import { GITHUB_REPO, IP_COOLDOWN_MS, LOCAL_IP_SCAN_KEY } from '../pentest/constants'
+import { groupAuditsByHost } from '../pentest/groupAudits'
 import { fetchAuditIndex } from '../pentest/loadAudits'
-import { formatCooldown, hostCooldownRemaining } from '../pentest/rateLimit'
+import { formatCooldown } from '../pentest/rateLimit'
 import type { AuditIndex } from '../pentest/types'
 import { canonicalizeHost, normalizeTarget } from '../pentest/urlGuard'
 
@@ -22,7 +23,7 @@ const AssessPage = () => {
       .catch(() => setIndex({ audits: [], hostCooldowns: {}, actorCooldowns: {} }))
   }, [])
 
-  const recent = useMemo(() => index?.audits.slice(0, 6) ?? [], [index])
+  const recent = useMemo(() => groupAuditsByHost(index?.audits ?? []).slice(0, 6), [index])
 
   const hashValue = async (value: string): Promise<string> => {
     const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value))
@@ -32,7 +33,10 @@ const AssessPage = () => {
       .slice(0, 16)
   }
 
-  const assertIpAllowance = async () => {
+  const assertIpAllowance = async (isRetest: boolean) => {
+    if (isRetest) {
+      return null
+    }
     let ip = 'unknown'
     try {
       const response = await fetch('https://api.ipify.org?format=json')
@@ -48,7 +52,9 @@ const AssessPage = () => {
     if (raw) {
       const parsed = JSON.parse(raw) as { hash: string; at: number }
       if (parsed.hash === hash && Date.now() - parsed.at < IP_COOLDOWN_MS) {
-        throw new Error(`This network already started an assessment today. Try again in ${formatCooldown(IP_COOLDOWN_MS - (Date.now() - parsed.at))}.`)
+        throw new Error(
+          `This network already started an assessment today. Try again in ${formatCooldown(IP_COOLDOWN_MS - (Date.now() - parsed.at))}.`,
+        )
       }
     }
     return hash
@@ -62,27 +68,15 @@ const AssessPage = () => {
       if (!authorized) {
         throw new Error('Confirm you are authorized to test this website.')
       }
+      if (!index) {
+        throw new Error('Registry is still loading. Try again in a moment.')
+      }
       const target = normalizeTarget(url)
       const host = canonicalizeHost(target.hostname)
-      if (index) {
-        const wait = hostCooldownRemaining(index, host)
-        if (wait > 0) {
-          const existing = index.audits.find((item) => canonicalizeHost(item.hostname) === host)
-          if (existing) {
-            navigate(`/audits/${existing.id}`)
-            return
-          }
-          throw new Error(`This website was assessed recently. Next free scan in ${formatCooldown(wait)}.`)
-        }
-      }
-      const localHost = localStorage.getItem(LOCAL_HOST_SCAN_KEY)
-      if (localHost) {
-        const parsed = JSON.parse(localHost) as { host: string; at: number }
-        if (parsed.host === host && Date.now() - parsed.at < HOST_COOLDOWN_MS) {
-          throw new Error('This browser already assessed that website in the last 3 days.')
-        }
-      }
-      const ipHash = await assertIpAllowance()
+      const existing = index?.audits
+        .filter((item) => canonicalizeHost(item.hostname) === host)
+        .sort((left, right) => (right.version ?? 1) - (left.version ?? 1))[0]
+      const ipHash = await assertIpAllowance(Boolean(existing))
       const body = [
         '## Target URL',
         target.href,
@@ -94,9 +88,11 @@ const AssessPage = () => {
         'block08.com free assessment',
       ].join('\n')
       const issueUrl = `https://github.com/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(`[pentest] ${host}`)}&body=${encodeURIComponent(body)}`
-      localStorage.setItem(LOCAL_IP_SCAN_KEY, JSON.stringify({ hash: ipHash, at: Date.now() }))
-      localStorage.setItem(LOCAL_HOST_SCAN_KEY, JSON.stringify({ host, at: Date.now() }))
+      if (ipHash) {
+        localStorage.setItem(LOCAL_IP_SCAN_KEY, JSON.stringify({ hash: ipHash, at: Date.now() }))
+      }
       sessionStorage.setItem('b08.pendingHost', host)
+      sessionStorage.setItem('b08.pendingBaseline', String(existing?.version ?? 0))
       setStatus('Opening the assessment queue. Keep this tab open — the public report will appear after the toolkit finishes.')
       window.open(issueUrl, '_blank', 'noopener,noreferrer')
       navigate(`/assess/pending?host=${encodeURIComponent(host)}`)
@@ -114,8 +110,8 @@ const AssessPage = () => {
             <p className="text-primary-500 font-bold tracking-widest uppercase mb-4">Free external assessment</p>
             <h1 className="section-title">Website penetration test</h1>
             <p className="section-subtitle">
-              Non-mutating black-box checks with curl, openssl and dig. One scan per website every 3 days, and one per
-              visitor per day.
+              Non-mutating black-box checks with curl, openssl and dig. One new website per visitor per day. A retest
+              is published only after the live security surface changes.
             </p>
           </div>
 
@@ -150,8 +146,9 @@ const AssessPage = () => {
               Start free assessment
             </button>
             <p className="text-xs text-gray-500 mt-4">
-              The Block08 toolkit runs in GitHub Actions against the live target, then publishes the report here. A GitHub
-              account is required so the queue cannot be flooded.
+              The Block08 toolkit runs in GitHub Actions against the live target. If headers, TLS, DNS, CORS or
+              first-party scripts are unchanged, no new version is issued. A GitHub account is required so the queue
+              cannot be flooded.
             </p>
           </form>
 
@@ -166,11 +163,12 @@ const AssessPage = () => {
               <p className="text-gray-500">No public assessments yet.</p>
             ) : (
               <div className="grid md:grid-cols-2 gap-4">
-                {recent.map((audit) => (
-                  <Link key={audit.id} to={`/audits/${audit.id}`} className="card">
-                    <p className="text-white font-semibold">{audit.hostname}</p>
+                {recent.map((group) => (
+                  <Link key={group.host} to={`/audits/${group.latest.id}`} className="card">
+                    <p className="text-white font-semibold">{group.latest.hostname}</p>
                     <p className="text-sm text-gray-400">
-                      {audit.date} · {audit.overallRisk}
+                      {group.latest.date} · {group.latest.overallRisk} · v{group.latest.version ?? 1}
+                      {group.versions.length > 1 ? ` · ${group.versions.length} versions` : ''}
                     </p>
                   </Link>
                 ))}

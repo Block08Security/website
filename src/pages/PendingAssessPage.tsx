@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { versionsForHost } from '../pentest/groupAudits'
 import { fetchAuditIndex } from '../pentest/loadAudits'
 import { canonicalizeHost } from '../pentest/urlGuard'
 
@@ -9,7 +10,9 @@ const PendingAssessPage = () => {
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const host = canonicalizeHost(params.get('host') ?? sessionStorage.getItem('b08.pendingHost') ?? '')
+  const baseline = Number(sessionStorage.getItem('b08.pendingBaseline') ?? '0')
   const [message, setMessage] = useState('Waiting for the Block08 toolkit to finish…')
+  const [currentId, setCurrentId] = useState('')
 
   useEffect(() => {
     if (!host) {
@@ -18,15 +21,31 @@ const PendingAssessPage = () => {
     }
 
     let cancelled = false
+    const started = Date.now()
+
     const tick = async () => {
       const index = await fetchAuditIndex()
-      const match = index.audits.find((item) => canonicalizeHost(item.hostname) === host)
-      if (match && !cancelled) {
-        navigate(`/audits/${match.id}`)
+      const versions = versionsForHost(index.audits, host)
+      const latest = versions[0]
+      if (!latest) {
+        if (!cancelled) {
+          setMessage(`Still running against ${host}. This page refreshes automatically.`)
+        }
         return
       }
       if (!cancelled) {
-        setMessage(`Still running against ${host}. This page refreshes automatically.`)
+        setCurrentId(latest.id)
+      }
+      if ((latest.version ?? 1) > baseline && !cancelled) {
+        navigate(`/audits/${latest.id}`)
+        return
+      }
+      if (Date.now() - started > 10 * 60 * 1000 && !cancelled) {
+        setMessage(
+          `No new version was issued. ${host} matches the current report — remediate the live security surface, then retest.`,
+        )
+      } else if (!cancelled) {
+        setMessage(`Still running against ${host}. A new version is published only if the site changed.`)
       }
     }
 
@@ -39,7 +58,7 @@ const PendingAssessPage = () => {
       cancelled = true
       window.clearInterval(intervalId)
     }
-  }, [host, navigate])
+  }, [host, navigate, baseline])
 
   return (
     <div className="min-h-screen bg-dark-bg">
@@ -50,12 +69,19 @@ const PendingAssessPage = () => {
           <h1 className="section-title">Toolkit in progress</h1>
           <p className="section-subtitle">{message}</p>
           <p className="text-gray-500 mb-8">
-            Confirm the GitHub issue if a new tab opened. curl, openssl and dig are gathering evidence; the report is
-            committed to this website when complete.
+            Confirm the GitHub issue if a new tab opened. curl, openssl and dig are gathering evidence; an unchanged
+            website keeps its current version.
           </p>
-          <Link to="/audits" className="btn-secondary">
-            Open public registry
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/audits" className="btn-secondary">
+              Open public registry
+            </Link>
+            {currentId && (
+              <Link to={`/audits/${currentId}`} className="btn-primary">
+                Current report
+              </Link>
+            )}
+          </div>
         </div>
       </main>
       <Footer />

@@ -5,6 +5,7 @@
       "hostname": "www.unionmedia-lb.com",
       "target": "https://www.unionmedia-lb.com/",
       "date": "17 September 2026",
+      "version": 1,
       "overallRisk": "Moderate",
       "findingCounts": {
         "Critical": 0,
@@ -13,7 +14,8 @@
         "Low": 2,
         "Info": 1
       },
-      "reportPath": "/audits/reports/B08-UNIONMED-20260917.json"
+      "reportPath": "/audits/reports/B08-UNIONMED-20260917.json",
+      "contentFingerprint": ""
     }
   ],
   "hostCooldowns": {

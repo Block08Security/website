@@ -20,7 +20,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="relative border-t border-white/5">
+    <footer className="relative border-t border-white/5 print:hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 pointer-events-none" />
 
