@@ -1,5 +1,25 @@
 {
-  "audits": [],
-  "hostCooldowns": {},
-  "actorCooldowns": {}
+  "audits": [
+    {
+      "id": "B08-UNIONMED-20260917",
+      "hostname": "www.unionmedia-lb.com",
+      "target": "https://www.unionmedia-lb.com/",
+      "date": "17 September 2026",
+      "overallRisk": "Moderate",
+      "findingCounts": {
+        "Critical": 0,
+        "High": 0,
+        "Medium": 1,
+        "Low": 2,
+        "Info": 1
+      },
+      "reportPath": "/audits/reports/B08-UNIONMED-20260917.json"
+    }
+  ],
+  "hostCooldowns": {
+    "unionmedia-lb.com": "2026-09-17T00:38:53.934Z"
+  },
+  "actorCooldowns": {
+    "github:Jaafarkrayem": "2026-09-17T00:38:53.934Z"
+  }
 }
