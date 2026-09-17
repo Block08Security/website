@@ -93,7 +93,7 @@ const AssessPage = () => {
         '## Source',
         'block08.com free assessment',
       ].join('\n')
-      const issueUrl = `https://github.com/${GITHUB_REPO}/issues/new?labels=pentest&title=${encodeURIComponent(`[pentest] ${host}`)}&body=${encodeURIComponent(body)}`
+      const issueUrl = `https://github.com/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(`[pentest] ${host}`)}&body=${encodeURIComponent(body)}`
       localStorage.setItem(LOCAL_IP_SCAN_KEY, JSON.stringify({ hash: ipHash, at: Date.now() }))
       localStorage.setItem(LOCAL_HOST_SCAN_KEY, JSON.stringify({ host, at: Date.now() }))
       sessionStorage.setItem('b08.pendingHost', host)
