@@ -1,6 +1,23 @@
 {
   "audits": [
     {
+      "id": "B08-SAYDMAGA-20260919",
+      "hostname": "sayd-magazine.com",
+      "target": "https://sayd-magazine.com/",
+      "date": "19 September 2026",
+      "version": 1,
+      "overallRisk": "Moderate",
+      "findingCounts": {
+        "Critical": 0,
+        "High": 0,
+        "Medium": 2,
+        "Low": 5,
+        "Info": 1
+      },
+      "reportPath": "/audits/reports/B08-SAYDMAGA-20260919.json",
+      "contentFingerprint": "fe3fe172e1989a1bae1f35da61db32bdc5f5c49ed8bcd78c5a683cf0b915fa40"
+    },
+    {
       "id": "B08-UNIONMED-20260917",
       "hostname": "www.unionmedia-lb.com",
       "target": "https://www.unionmedia-lb.com/",
@@ -19,9 +36,11 @@
     }
   ],
   "hostCooldowns": {
-    "unionmedia-lb.com": "2026-09-17T00:38:53.934Z"
+    "unionmedia-lb.com": "2026-09-17T00:38:53.934Z",
+    "sayd-magazine.com": "2026-09-19T03:12:36.704Z"
   },
   "actorCooldowns": {
-    "github:Jaafarkrayem": "2026-09-17T00:38:53.934Z"
+    "github:Jaafarkrayem": "2026-09-17T00:38:53.934Z",
+    "github:unionmed": "2026-09-19T03:12:36.704Z"
   }
 }

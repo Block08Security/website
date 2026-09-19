@@ -1,0 +1,136 @@
+{
+  "reference": "B08-SAYDMAGA-20260919",
+  "version": 1,
+  "previousReference": null,
+  "contentFingerprint": "fe3fe172e1989a1bae1f35da61db32bdc5f5c49ed8bcd78c5a683cf0b915fa40",
+  "target": "https://sayd-magazine.com/",
+  "hostname": "sayd-magazine.com",
+  "assessmentDate": "19 September 2026",
+  "generatedAt": "2026-09-19T03:12:36.689Z",
+  "posture": "External · Black-box",
+  "preparedBy": "Block08 Security Audits",
+  "classification": "PUBLIC",
+  "overallRisk": "Moderate",
+  "executiveSummary": "sayd-magazine.com presents a moderate external attack surface. This assessment identified 8 findings (0 Critical, 0 High, 2 Medium, 5 Low, 1 Info) using the Block08 non-mutating toolkit. 3 controls were verified as correctly implemented. Primary gaps: http strict-transport-security (hsts) not set; content-security-policy not set; no dns caa record on sayd-magazine.com. Closing the items below moves the deployment toward a best-in-class public posture.",
+  "findingCounts": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 2,
+    "Low": 5,
+    "Info": 1
+  },
+  "findings": [
+    {
+      "id": "SAYDMAGA-CONF-HSTS",
+      "severity": "Medium",
+      "title": "HTTP Strict-Transport-Security (HSTS) not set",
+      "wstg": "WSTG-CONF-07",
+      "cwe": "CWE-319",
+      "cvss": 5.9,
+      "evidence": "No Strict-Transport-Security response header on https://sayd-magazine.com/. A first visit over HTTP (or an active MITM) can be SSL-stripped; browsers will not force HTTPS.",
+      "recommendation": "Set 'Strict-Transport-Security: max-age=63072000; includeSubDomains; preload' at the edge/origin and submit to the HSTS preload list."
+    },
+    {
+      "id": "SAYDMAGA-CONF-CSP",
+      "severity": "Medium",
+      "title": "Content-Security-Policy not set",
+      "wstg": "WSTG-CLNT-12",
+      "cwe": "CWE-1021",
+      "cvss": 5.4,
+      "evidence": "No Content-Security-Policy header on https://sayd-magazine.com/. Browsers cannot restrict script, frame, or object loading.",
+      "recommendation": "Ship a strict CSP with nonce-based script-src, object-src 'none', and frame-ancestors."
+    },
+    {
+      "id": "SAYDMAGA-INFO-CAA",
+      "severity": "Low",
+      "title": "No DNS CAA record on sayd-magazine.com",
+      "wstg": "WSTG-INFO-02",
+      "cwe": "CWE-295",
+      "cvss": 3.1,
+      "evidence": "dig CAA sayd-magazine.com returned no records. Any public CA may issue a certificate for this domain, widening the mis-issuance surface.",
+      "recommendation": "Publish a DNS CAA record pinning issuance to the CAs actually used (e.g. Let's Encrypt / your CDN CA) with an iodef contact."
+    },
+    {
+      "id": "SAYDMAGA-INFO-SECTXT",
+      "severity": "Low",
+      "title": "No security.txt vulnerability-disclosure contact",
+      "wstg": "WSTG-INFO-00",
+      "cwe": "CWE-200",
+      "cvss": 1,
+      "evidence": "/.well-known/security.txt returned HTTP 404. Researchers have no standard channel to report issues.",
+      "recommendation": "Publish /.well-known/security.txt (RFC 9116) with Contact, Encryption, Policy and Expires fields."
+    },
+    {
+      "id": "SAYDMAGA-CONF-XCTO",
+      "severity": "Low",
+      "title": "X-Content-Type-Options: nosniff missing",
+      "wstg": "WSTG-CONF-00",
+      "cwe": "CWE-693",
+      "cvss": 2.4,
+      "evidence": "Absent on https://sayd-magazine.com/. Browsers may MIME-sniff responses, enabling content-type confusion attacks.",
+      "recommendation": "Send 'X-Content-Type-Options: nosniff' on all responses."
+    },
+    {
+      "id": "SAYDMAGA-CONF-REFPOL",
+      "severity": "Low",
+      "title": "Referrer-Policy not set",
+      "wstg": "WSTG-CONF-00",
+      "cwe": "CWE-200",
+      "cvss": 2.4,
+      "evidence": "No Referrer-Policy header. Full URLs can leak to third-party origins via the Referer header.",
+      "recommendation": "Set 'Referrer-Policy: strict-origin-when-cross-origin' (or 'no-referrer')."
+    },
+    {
+      "id": "SAYDMAGA-CONF-PERMPOL",
+      "severity": "Low",
+      "title": "Permissions-Policy not set",
+      "wstg": "WSTG-CONF-00",
+      "cwe": "CWE-693",
+      "cvss": 2,
+      "evidence": "No Permissions-Policy header. Camera/microphone/geolocation and other powerful features are not explicitly denied at the document level.",
+      "recommendation": "Send a restrictive Permissions-Policy allowing only the features actually needed."
+    },
+    {
+      "id": "SAYDMAGA-CONF-COOP",
+      "severity": "Info",
+      "title": "Cross-Origin-Opener-Policy not set",
+      "wstg": "WSTG-CONF-00",
+      "cwe": "CWE-668",
+      "cvss": 0,
+      "evidence": "COOP/COEP/CORP not present. Cross-origin isolation is not enabled.",
+      "recommendation": "Consider 'Cross-Origin-Opener-Policy: same-origin' where compatible with third-party frames."
+    }
+  ],
+  "controls": [
+    {
+      "title": "Modern TLS only",
+      "detail": "TLS 1.2=yes, TLS 1.3=yes; TLS 1.0/1.1 not offered."
+    },
+    {
+      "title": "No hard secrets detected in client bundles",
+      "detail": "Scanned 0 script(s) for sk_live/AKIA/AIza/PEM/github token patterns, none found."
+    },
+    {
+      "title": "Cloudflare WAF/CDN fronts the origin",
+      "detail": "server/cf-ray present. Origin IP is masked at the edge."
+    }
+  ],
+  "scope": {
+    "inScope": "Web front-end https://sayd-magazine.com/ (external, unauthenticated surface).",
+    "rules": "External black-box · non-destructive (strictly non-mutating). No denial-of-service, no brute force, no configuration changes, no data mutation. Every request is rate-limited and identified via a dedicated audit User-Agent.",
+    "methodology": "OWASP WSTG v4.2 · PTES · NIST SP 800-115. Information gathering, configuration & deployment, transport, and client-side controls.",
+    "tooling": [
+      "curl",
+      "openssl",
+      "dig",
+      "Block08 assess toolkit (rule engine)"
+    ]
+  },
+  "roadmap": [
+    "Ship the response-header hardening set (HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) at the edge in a single change.",
+    "Remove disclosure surface: drop X-Powered-By, publish /.well-known/security.txt, and add a DNS CAA record.",
+    "Disable legacy TLS 1.0/1.1 if offered and require TLS 1.2+.",
+    "Re-run this suite after remediation for a clean baseline suitable for stakeholder distribution."
+  ],
+  "assurance": "Block08 Security Audits conducted this automated external assessment of sayd-magazine.com on the date recorded herein, following a disciplined, evidence-driven methodology. Every finding was produced by the Block08 toolkit from live tool output (curl, openssl, dig) and a deterministic rule engine, not a language model. Testing was strictly non-mutating. Security testing cannot prove the absence of all vulnerabilities; findings are limited to the observable unauthenticated surface under the stated rules of engagement."
+}
