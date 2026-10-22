@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { PHP2SHELL_ADVISORY, PHP2SHELL_PATH } from '../content/php2shellAdvisory'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -39,7 +40,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 print:hidden ${
+      className={`site-header fixed left-0 right-0 z-50 transition-all duration-500 print:hidden ${
         isScrolled || !isHome || isMenuOpen
           ? 'bg-dark-bg/80 backdrop-blur-2xl shadow-2xl border-b border-white/10'
           : 'bg-transparent'
@@ -75,6 +76,13 @@ const Header = () => {
               className="text-gray-300 hover:text-white transition-all duration-300 font-medium relative group"
             >
               Registry
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-300 group-hover:w-full" />
+            </Link>
+            <Link
+              to={PHP2SHELL_PATH}
+              className="text-gray-300 hover:text-white transition-all duration-300 font-medium relative group"
+            >
+              {PHP2SHELL_ADVISORY.navLabel}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-300 group-hover:w-full" />
             </Link>
             <button
@@ -117,6 +125,7 @@ const Header = () => {
             </button>
             <Link to="/assess">Free Test</Link>
             <Link to="/audits">Registry</Link>
+            <Link to={PHP2SHELL_PATH}>{PHP2SHELL_ADVISORY.navLabel}</Link>
             <button type="button" onClick={() => scrollToSection('about')}>
               About
             </button>

@@ -9,7 +9,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-bg via-dark-bg to-dark-card" />
       
@@ -23,7 +23,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       {/* Content */}
-      <div className="section-container relative z-10 pt-32 pb-20 text-center">
+      <div className="section-container relative z-10 pt-24 sm:pt-32 pb-16 sm:pb-20 text-center">
         <div className="animate-fade-in">
           {/* Badge */}
           <div className="inline-flex items-center px-6 py-3 bg-white/5 border border-white/10 rounded-full mb-8 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 group">

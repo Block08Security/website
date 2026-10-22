@@ -1,0 +1,9 @@
+export const SITE_ORIGIN = 'https://block08.com' as const
+export const SITE_NAME = 'Block08 Security' as const
+export const SITE_EMAIL = 'security@block08.com' as const
+export const SITE_PHONE_DISPLAY = '+968-98-871263' as const
+export const SITE_PHONE_HREF = 'tel:+96898871263' as const
+export const CONTACT_MAIL_SUBJECT_PREFIX = 'Security Assessment Request' as const
+export const ADVISORY_HELP_PARAM = 'help' as const
+export const PHP2SHELL_ROUTE = '/advisories/php2shell' as const
+export const PHP2SHELL_PATH = `${PHP2SHELL_ROUTE}/` as const

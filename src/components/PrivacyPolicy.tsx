@@ -1,3 +1,5 @@
+import { SITE_EMAIL } from '../content/site'
+
 const PrivacyPolicy = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -6,7 +8,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-dark-bg">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-dark-bg/80 backdrop-blur-2xl shadow-2xl border-b border-white/10">
+      <header className="site-header fixed left-0 right-0 z-50 bg-dark-bg/80 backdrop-blur-2xl shadow-2xl border-b border-white/10">
         <div className="section-container">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center">
@@ -198,7 +200,7 @@ const PrivacyPolicy = () => {
                   <li><strong className="text-white">Withdraw Consent:</strong> Withdraw consent at any time</li>
                 </ul>
                 <p className="text-gray-300 leading-relaxed">
-                  To exercise these rights, please contact us at <a href="mailto:security@block08.com" className="text-primary-500 hover:text-primary-400">security@block08.com</a>. We will respond to your request within a reasonable timeframe.
+                  To exercise these rights, please contact us at <a href={`mailto:${SITE_EMAIL}`} className="text-primary-500 hover:text-primary-400 break-all">{SITE_EMAIL}</a>. We will respond to your request within a reasonable timeframe.
                 </p>
               </section>
 
@@ -260,8 +262,8 @@ const PrivacyPolicy = () => {
                   <p><strong className="text-white">Block08 Security Audits</strong></p>
                   <p>A Division of Route07 Information Technology</p>
                   <p>Muscat, Oman</p>
-                  <p>Email: <a href="mailto:security@block08.com" className="text-primary-500 hover:text-primary-400">security@block08.com</a></p>
-                  <p>Security: <a href="mailto:security@block08.com" className="text-primary-500 hover:text-primary-400">security@block08.com</a></p>
+                  <p>Email: <a href={`mailto:${SITE_EMAIL}`} className="text-primary-500 hover:text-primary-400 break-all">{SITE_EMAIL}</a></p>
+                  <p>Security: <a href={`mailto:${SITE_EMAIL}`} className="text-primary-500 hover:text-primary-400 break-all">{SITE_EMAIL}</a></p>
                 </div>
               </section>
 

@@ -1,4 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { PHP2SHELL_ADVISORY, PHP2SHELL_PATH } from '../content/php2shellAdvisory'
+import { SITE_EMAIL } from '../content/site'
+import { buildMailto } from '../lib/mailto'
 
 const Footer = () => {
   const location = useLocation()
@@ -175,6 +178,15 @@ const Footer = () => {
                   Contact
                 </button>
               </li>
+              <li>
+                <Link
+                  to={PHP2SHELL_PATH}
+                  className="text-gray-400 hover:text-primary-500 text-sm transition-colors inline-flex items-center group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-primary-500 transition-all mr-0 group-hover:mr-2"></span>
+                  {`${PHP2SHELL_ADVISORY.navLabel} advisory`}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -219,11 +231,11 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-            <a href="mailto:security@block08.com" className="text-gray-400 hover:text-primary-500 text-sm transition-colors flex items-center group">
-              <svg className="w-4 h-4 mr-2 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href={buildMailto(SITE_EMAIL, 'Security enquiry', '')} className="text-gray-400 hover:text-primary-500 text-sm transition-colors flex items-center group break-all">
+              <svg className="w-4 h-4 mr-2 text-primary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              security@block08.com
+              {SITE_EMAIL}
             </a>
           </div>
         </div>

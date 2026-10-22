@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import AdvisoryBanner from './components/AdvisoryBanner'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Highlights from './components/Highlights'
@@ -13,6 +14,8 @@ import AssessPage from './pages/AssessPage'
 import PendingAssessPage from './pages/PendingAssessPage'
 import AuditsPage from './pages/AuditsPage'
 import AuditReportPage from './pages/AuditReportPage'
+import { PHP2SHELL_ROUTE } from './content/site'
+import Php2shellAdvisoryPage from './pages/Php2shellAdvisoryPage'
 
 function HomePage() {
   const location = useLocation()
@@ -44,6 +47,7 @@ function HomePage() {
 function App() {
   return (
     <div className="min-h-screen bg-dark-bg">
+      <AdvisoryBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/assess" element={<AssessPage />} />
@@ -51,6 +55,7 @@ function App() {
         <Route path="/audits" element={<AuditsPage />} />
         <Route path="/audits/:reportId" element={<AuditReportPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path={PHP2SHELL_ROUTE} element={<Php2shellAdvisoryPage />} />
       </Routes>
     </div>
   )

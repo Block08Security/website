@@ -1,6 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { ACTIVE_ADVISORY, ADVISORY_HELP_PARAM } from '../content/advisories'
+import {
+  CONTACT_MAIL_SUBJECT_PREFIX,
+  SITE_EMAIL,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_HREF,
+} from '../content/site'
+import { buildMailto } from '../lib/mailto'
 
 const Contact = () => {
+  const [searchParams] = useSearchParams()
+  const [mailHint, setMailHint] = useState('')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -8,10 +19,33 @@ const Contact = () => {
     message: '',
   })
 
+  useEffect(() => {
+    const help = searchParams.get(ADVISORY_HELP_PARAM)
+    const prefill = ACTIVE_ADVISORY?.prefill
+    if (!help || !prefill || help !== prefill.helpValue) {
+      return
+    }
+    setFormData((current) => ({
+      ...current,
+      projectType: prefill.projectType,
+      message: current.message || prefill.message,
+    }))
+  }, [searchParams])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const mailtoLink = `mailto:security@block08.com?subject=Security Assessment Request - ${formData.projectType}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AProject Type: ${formData.projectType}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`
-    window.location.href = mailtoLink
+    const subject = `${CONTACT_MAIL_SUBJECT_PREFIX} - ${formData.projectType}`
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Project Type: ${formData.projectType}`,
+      '',
+      'Message:',
+      formData.message,
+    ].join('\n')
+    const mailtoLink = buildMailto(SITE_EMAIL, subject, body)
+    setMailHint(`If your email app did not open, tap ${SITE_EMAIL} or copy the address and send this note yourself.`)
+    window.location.assign(mailtoLink)
   }
 
   const handleChange = (
@@ -34,7 +68,7 @@ const Contact = () => {
 
       <div className="section-container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 sm:mb-20">
           <div className="inline-block mb-6">
             <span className="text-primary-500 font-bold text-base md:text-lg tracking-widest uppercase">Get In Touch</span>
           </div>
@@ -121,11 +155,19 @@ const Contact = () => {
                   </div>
 
                   <button type="submit" className="btn-primary w-full text-lg group">
-                    Send Message
+                    Open email to {SITE_EMAIL}
                     <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </button>
+                  <p className="text-sm text-gray-400">
+                    This opens your mail app with a message addressed to{' '}
+                    <a href={buildMailto(SITE_EMAIL, CONTACT_MAIL_SUBJECT_PREFIX, '')} className="text-primary-500 break-all">
+                      {SITE_EMAIL}
+                    </a>
+                    . If nothing opens, tap the address.
+                  </p>
+                  {mailHint && <p className="text-sm text-primary-300">{mailHint}</p>}
                 </form>
               </div>
             </div>
@@ -133,7 +175,7 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="animate-slide-up space-y-6">
               {/* Email */}
-              <div className="card group hover:scale-105 transition-all">
+              <div className="card group md:hover:scale-105 transition-all">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <div className="relative">
@@ -145,17 +187,17 @@ const Contact = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="ml-5">
+                  <div className="ml-5 min-w-0">
                     <h3 className="text-xl font-bold text-white mb-2">Email</h3>
-                    <a href="mailto:security@block08.com" className="text-primary-500 hover:text-primary-400 font-semibold transition-colors">
-                      security@block08.com
+                    <a href={buildMailto(SITE_EMAIL, CONTACT_MAIL_SUBJECT_PREFIX, '')} className="text-primary-500 hover:text-primary-400 font-semibold transition-colors break-all">
+                      {SITE_EMAIL}
                     </a>
                   </div>
                 </div>
               </div>
 
               {/* Emergency Hotline */}
-              <div className="card group hover:scale-105 transition-all relative overflow-hidden">
+              <div className="card group md:hover:scale-105 transition-all relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-primary-700/10" />
                 <div className="relative flex items-start">
                   <div className="flex-shrink-0">
@@ -170,14 +212,16 @@ const Contact = () => {
                   </div>
                   <div className="ml-5">
                     <h3 className="text-xl font-bold text-white mb-2">24/7 Emergency Hotline</h3>
-                    <p className="text-primary-500 font-bold text-lg">+968-98-871263</p>
+                    <a href={SITE_PHONE_HREF} className="text-primary-500 font-bold text-lg">
+                      {SITE_PHONE_DISPLAY}
+                    </a>
                     <p className="text-sm text-gray-400 mt-2">For critical security incidents</p>
                   </div>
                 </div>
               </div>
 
               {/* Location */}
-              <div className="card group hover:scale-105 transition-all">
+              <div className="card group md:hover:scale-105 transition-all">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <div className="relative">
@@ -199,7 +243,7 @@ const Contact = () => {
               </div>
 
               {/* Response Time */}
-              <div className="card group hover:scale-105 transition-all">
+              <div className="card group md:hover:scale-105 transition-all">
                 <div className="flex items-center text-center justify-center py-4">
                   <div className="relative mr-4">
                     <div className="absolute inset-0 bg-primary-600/20 blur-xl rounded-full" />
